@@ -1,0 +1,40 @@
+Date: 2020/05/27
+Title: Building a Blog
+
+---
+
+# Building a Blog (Part 1?)
+## Getting start with Next.js and TypeScript
+
+_Outlining the steps to build this blog, as I do them!_
+
+This first post will dive into my process building a personal blog using Next.js and TypeScript.
+
+Since this is my first post, I'll give some context about my experience. Coming into this, I've worked with React
+and TypeScript for about 5 years. I've been working in web development professionally for the past 10 years. My career
+has spanned finance, ed-tech, ad-tech, and currently internet security (at Dashlane), as well as some freelancing.
+
+I've typically been a full-stack engineer, usually focusing on front-end and user experience, and that is where I hope
+I can provide a helping hand.
+
+With that, let's (yarn?) start (using the [Next.js docs](https://nextjs.org/docs/getting-started) as a reference).
+
+`yarn create next-app` seems like a very accessible starting point.
+
+After naming my project, I pick an "Example from the Next.js repo":  `with-typescript-eslint-jest`.
+
+I chose it for a few reasons:
+* I like TypeScript, and I feel that existing docs and blogs under-represent it. I want to help with that!
+* There's no reason to not include eslint. Hopefully Prettier is included too.
+* I don't know how much unit testing I'll be doing, but I may as well have jest ready to go.TypeScript
+* Other examples have other features I may want in the future (for example, styled-components) but I'll keep it simple.
+
+Looking at a new codebase, I typically start with its `package.json`. It will outline the application at a very high
+level: the tech stack (we already know this is React and TypeScript, but anything else interesting?), the build and
+deployment, and development commands, and can help reduce "unknown unknowns".
+
+A few things pop out:
+* `prettier` is indeed included, so I tailor the `.prettierrc` file to my preferences and set up my IDE (WebStorm) to
+automatically format files when they are saved.
+* `next: latest`. I change this to the latest major version (^9.4.3) because I want to avoid breaking changes.
+
