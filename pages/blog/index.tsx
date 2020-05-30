@@ -3,7 +3,7 @@ import { Container } from 'next/app';
 import { SiteHead } from '../../components/SiteHead';
 import { Layout } from './Layout';
 
-import MD from './pages/2020-05-27.mdx';
+import MD from './pages/2020-05-30-01-picking-starter-kit.mdx';
 
 export default () => (
   <Container>
