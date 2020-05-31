@@ -8,6 +8,11 @@
     "prettier",
     "prettier/@typescript-eslint"
   ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "env": {
     "es6": true,
     "browser": true,
@@ -38,5 +43,13 @@
         "allow": ["warn", "error"]
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.js"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    }
+  ]
 }

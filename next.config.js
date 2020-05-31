@@ -1,4 +1,4 @@
-import mdx from '@next/mdx';
+const mdx = require('@next/mdx');
 
 const withMDX = mdx({
   extension: /\.(md|mdx)$/
