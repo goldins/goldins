@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Theme } from './defaultTheme';
 
 export default (theme: Theme) => `

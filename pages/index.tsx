@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
-import { defaultTheme, Theme } from '../styles/defaultTheme';
+import { defaultTheme } from '../styles/defaultTheme';
 import { Home } from './home';
 
 const Container = styled.div(() => ({
