@@ -3,11 +3,9 @@ import * as React from 'react';
 import { Keyboard } from './Keyboard';
 import { Form } from './Form';
 
-const SubPageOne = () => (
+export default () => (
   <>
-    <Form/>
-    <Keyboard/>
+    <Form />
+    <Keyboard />
   </>
 );
-
-export default SubPageOne;

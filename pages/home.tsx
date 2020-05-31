@@ -52,8 +52,8 @@ export const Home = () => {
 
       <Footer>Footer</Footer>
 
-      <a href="./blog">Blog</a>
-      <a href="./projects">Projects</a>
+      <a href="/blog">Blog</a>
+      <a href="/projects">Projects</a>
     </Container>
   );
 };
