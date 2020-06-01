@@ -3,7 +3,13 @@ import { ThemeProvider } from 'emotion-theming';
 import { Container } from '../components/Container';
 import { defaultTheme } from '../styles/defaultTheme';
 
-export default ({ Component, pageProps }: any) => {
+interface AppProps {
+  Component: () => React.ReactElement;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  pageProps: { [k: string]: any };
+}
+
+export default ({ Component, pageProps }: AppProps) => {
   return (
     <Container>
       <ThemeProvider theme={defaultTheme}>
