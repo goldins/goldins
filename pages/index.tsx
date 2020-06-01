@@ -39,7 +39,7 @@ const Footer = styled.footer(() => ({
   alignItems: 'center'
 }));
 
-export const Home = () => {
+export default () => {
   const theme = useTheme<Theme>();
 
   return (
