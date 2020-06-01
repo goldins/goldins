@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { GetStaticProps, GetStaticPropsResult } from 'next';
+import { GetStaticProps } from 'next';
 import Link from 'next/link';
 
 export default () => (
@@ -13,7 +13,7 @@ export default () => (
   </div>
 );
 
-export const getStaticProps: GetStaticProps = async (context): Promise<GetStaticPropsResult<{}>> => {
+export const getStaticProps: GetStaticProps = async (_context) => {
   return {
     props: {}
   };

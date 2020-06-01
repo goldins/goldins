@@ -1,5 +1,5 @@
-import dynamic from 'next/dynamic';
 import * as React from 'react';
+import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import { zip } from 'lodash';
 import { parse, format } from 'date-fns';
@@ -42,7 +42,7 @@ export default ({ fileNames }: Props) => {
   );
 };
 
-export const getStaticProps = () => {
+export const getStaticProps: GetStaticProps = async () => {
   const fileNames = getMdSlugs();
   return {
     props: {

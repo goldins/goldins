@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { GetStaticProps, GetStaticPropsResult } from 'next';
 import Link from 'next/link';
 import { useTheme } from 'emotion-theming';
 import { Global } from '@emotion/core';
