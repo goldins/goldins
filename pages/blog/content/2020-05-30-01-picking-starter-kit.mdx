@@ -9,11 +9,11 @@ _General guide for choosing a starter kit (aka starter library, aka boilerplate)
 
 ## Introduction
 
-This post will dive choosing a starter kit, using my experience building this blog as an example. I hope that this is the first post in a series that come out of working on this website.
+This post will explore choosing a starter kit, using my experience building this blog as an example. This will be the first post in a series that comes out of working on this website.
 
-Since this is my first post, I'll give some context about my experience. Coming into this, I've worked with React and TypeScript for about 5 years and I've been working in web development professionally for the past 10 years. My career has spanned finance, ed-tech, ad-tech, and currently internet security, as well as some freelancing.
+Since this is my first post, I want to start by sharing my experience. Coming into this, I've worked with React and TypeScript for about 5 years and I've been working in web development professionally for the past 10 years. My career has spanned finance, ed-tech, ad-tech, and currently internet security, as well as some freelancing.
 
-I've typically been a full-stack engineer, usually focusing on front-end and user experience, and that is where I hope I can provide a helping hand.
+I've typically been a full-stack engineer, usually focusing on front-end and user experience, which is where I hope I can provide the most help.
 
 With that, let's (yarn?) start!
 
@@ -25,7 +25,7 @@ However, a starter kit does a lot of heavy lifting for you out of the box and is
 
 ## How to choose a starter kit
 
-I've gone through this process a handful of times, so at this point I think it may be helpful to others (and future me) to document what I look for, what I avoid, and what I do after making a decision. These factors are mainly about the dependencies that are included, because you're going to change the content of the application anyways.
+I've gone through this process a handful of times, so at this point I think it may be helpful to others (and future me) to document what I look for and avoid. In a future post, I will also go into some detail about what I do after making a decision. These factors are mainly about the dependencies that are included, since you're going to change the content of the application anyways.
 
 Luckily, it's not too hard to try a few different options before settling on one, and future you (or your team) will thank present you for making a good decision.
 
@@ -39,13 +39,13 @@ Luckily, it's not too hard to try a few different options before settling on one
 
 When looking for a starter kit in the past, I came across _a lot_ of options. After digging into them a bit, I found that most of them were using outdated major dependencies.
 
-By checking before I started I avoided some headache down the road. If I had went with an outdated template, I would have to rely on old documentation, I'd likely miss out on useful functionality, and ultimately I'd have to update dependencies myself.
+By checking before I started I avoided some headache down the road. If I had gone with an outdated template, I would have had to rely on old documentation, I'd likely miss out on useful functionality, and ultimately I'd have to update dependencies myself.
 
 Realistically, I'm going to update dependencies anyways; but jumping to newer minor or patch versions will have fewer breaking changes than having to upgrade major versions).
 
 #### Good Tooling
 
-By "tooling", I am essentially referring to specific dev dependencies. You'll likely want things like formatting, linting, and testing systems in place eventually. so you may as well get a starter kit that already has them integrated for you. Each of these will have its own options to choose from (like formatting rules), so picking a starting kit that has these out-of-the-box will mean they will work with each other (for example: eslint, Prettier, and TypeScript configurations working seamlessly together).
+By "tooling", I am essentially referring to specific dev dependencies. You'll likely want things like formatting, linting, and testing systems in place eventually, so you may as well get a starter kit that already has them integrated for you. Each of these will have its own options to choose from (like formatting rules), so picking a starting kit that has these out-of-the-box will mean they will work with each other (for example: eslint, Prettier, and TypeScript configurations working seamlessly together).
 
 #### Officially Supported
 
@@ -55,6 +55,6 @@ With the above points in mind, look at official starter kits first. They are goi
 
 With these points in mind, I picked [with-typescript-eslint-jest](https://github.com/vercel/next.js/tree/canary/examples/with-typescript-eslint-jest) for Next.JS.
 
-This was one of the options using the installer (`create next-app`), and although some dependencies were a bit outdated, it looked like a good base. ESLint, Prettier, Jest and react-testing-library were all included, and there were a few bare-bone files (including tests!) that I start with.
+This was one of the options using the installer (`create next-app`), and although some dependencies were a bit outdated, it looked like a good base. ESLint, Prettier, Jest and react-testing-library were all included, and there were a few bare-bone files (including tests!) that I could start with.
 
 My next post will go into what I did next.
