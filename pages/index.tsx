@@ -1,16 +1,64 @@
 import * as React from 'react';
-import { ThemeProvider } from 'emotion-theming';
+import styled from '@emotion/styled';
+import Link from 'next/link';
+import { useTheme } from 'emotion-theming';
+import { Global } from '@emotion/core';
 
-import { Container } from '../components/Container';
-import { defaultTheme } from '../styles/defaultTheme';
-import { Home } from './home';
+import { SiteHead } from '../components/SiteHead';
+import normalize from '../styles/normalize';
+import { Theme } from '../styles/defaultTheme';
 
-export default () => {
+const Container = styled.div(() => ({
+  minHeight: '100vh',
+  padding: '0 0.5rem',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  '& a': {
+    color: '#0070F3',
+    textDecoration: 'none',
+    '&:hover, &:focus, &:active': {
+      textDecoration: 'underline'
+    }
+  }
+}));
+
+const H1 = styled.h1(() => ({
+  margin: 0,
+  lineHeight: 1.15,
+  fontSize: '4rem'
+}));
+
+const Footer = styled.footer(() => ({
+  width: '100%',
+  height: 100,
+  borderTop: '1px solid #EAEAEA',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center'
+}));
+
+export const Home = () => {
+  const theme = useTheme<Theme>();
+
   return (
     <Container>
-      <ThemeProvider theme={defaultTheme}>
-        <Home />
-      </ThemeProvider>
+      <Global styles={normalize(theme)} />
+      <SiteHead />
+
+      <main>
+        <H1>Simon.Goldin</H1>
+      </main>
+
+      <Link href="/blog">
+        <a>Blog</a>
+      </Link>
+      <Link href="/projects">
+        <a>Projects</a>
+      </Link>
+
+      <Footer>Footer</Footer>
     </Container>
   );
 };
