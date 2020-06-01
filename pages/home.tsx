@@ -1,9 +1,11 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
+import { GetStaticProps, GetStaticPropsResult } from 'next';
+import Link from 'next/link';
 import { useTheme } from 'emotion-theming';
 import { Global } from '@emotion/core';
-import { SiteHead } from '../components/SiteHead';
 
+import { SiteHead } from '../components/SiteHead';
 import normalize from '../styles/normalize';
 import { Theme } from '../styles/defaultTheme';
 
@@ -13,13 +15,7 @@ const Container = styled.div(() => ({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  alignItems: 'center'
-}));
-
-const H1 = styled.h1(() => ({
-  margin: 0,
-  lineHeight: 1.15,
-  fontSize: '4rem',
+  alignItems: 'center',
   '& a': {
     color: '#0070F3',
     textDecoration: 'none',
@@ -27,6 +23,12 @@ const H1 = styled.h1(() => ({
       textDecoration: 'underline'
     }
   }
+}));
+
+const H1 = styled.h1(() => ({
+  margin: 0,
+  lineHeight: 1.15,
+  fontSize: '4rem'
 }));
 
 const Footer = styled.footer(() => ({
@@ -50,10 +52,14 @@ export const Home = () => {
         <H1>Simon.Goldin</H1>
       </main>
 
-      <Footer>Footer</Footer>
+      <Link href="/blog">
+        <a>Blog</a>
+      </Link>
+      <Link href="/projects">
+        <a>Projects</a>
+      </Link>
 
-      <a href="/blog">Blog</a>
-      <a href="/projects">Projects</a>
+      <Footer>Footer</Footer>
     </Container>
   );
 };

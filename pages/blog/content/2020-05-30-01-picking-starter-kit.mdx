@@ -1,7 +1,7 @@
-Date: 2020/05/30
-Title: Picking a starter kit
-
----
+export const metadata = {
+  date: '2020/05/30',
+  title: 'Picking a Starter Kit'
+};
 
 # Choosing a React Starter kit
 
@@ -9,35 +9,25 @@ _General guide for choosing a starter kit (aka starter library, aka boilerplate)
 
 ## Introduction
 
-This post will dive choosing a starter kit, using my experience building this blog as an example.
-I hope that this is the first post in a series that come out of working on this website.
+This post will dive choosing a starter kit, using my experience building this blog as an example. I hope that this is the first post in a series that come out of working on this website.
 
-Since this is my first post, I'll give some context about my experience. Coming into this, I've worked with React
-and TypeScript for about 5 years. I've been working in web development professionally for the past 10 years. My career
-has spanned finance, ed-tech, ad-tech, and currently internet security (at Dashlane), as well as some freelancing.
+Since this is my first post, I'll give some context about my experience. Coming into this, I've worked with React and TypeScript for about 5 years. I've been working in web development professionally for the past 10 years. My career has spanned finance, ed-tech, ad-tech, and currently internet security, as well as some freelancing.
 
-I've typically been a full-stack engineer, usually focusing on front-end and user experience, and that is where I hope
-I can provide a helping hand.
+I've typically been a full-stack engineer, usually focusing on front-end and user experience, and that is where I hope I can provide a helping hand.
 
 With that, let's (yarn?) start!
 
 ## Why choose a starter kit at all?
 
-There's value in building an application from scratch, particularly for gaining valuable learning experience as you go,
-and to be able to specify exactly what you want, and nothing else.
+There's value in building an application from scratch, particularly for gaining valuable learning experience as you go, and to be able to specify exactly what you want, and nothing else.
 
-However, a starter kit does a lot of heavy lifting for you out of the box and is usually a way to hit the ground
-running. When my team first picked up React, we went with a starter kit which abstracted a lot of the complexity
-away from us, and we were able to focus on building the application and not worry (as much) about tooling.
+However, a starter kit does a lot of heavy lifting for you out of the box and is usually a way to hit the ground running. When my team first picked up React, we went with a starter kit which abstracted a lot of the complexity away from us, and we were able to focus on building the application and not worry (as much) about tooling.
 
 ## How to choose a starter kit
 
-I've gone through this process a handful of times, so at this point I think it may be helpful to others (and future me)
-to document what I look for, what I avoid, and what I do after making a decision. These factors are mainly about the
-dependencies that are included, because you're going to change the content of the application anyways.
+I've gone through this process a handful of times, so at this point I think it may be helpful to others (and future me) to document what I look for, what I avoid, and what I do after making a decision. These factors are mainly about the dependencies that are included, because you're going to change the content of the application anyways.
 
-Luckily, it's not too hard to try a few different options before settling on one, and future you (or your team) will
-thank present you for making a good decision.
+Luckily, it's not too hard to try a few different options before settling on one, and future you (or your team) will thank present you for making a good decision.
 
 ### What to look for
 
@@ -47,38 +37,24 @@ thank present you for making a good decision.
 
 #### Up to Date Dependencies
 
-When looking for a starter kit in the past, I came across _a lot_ of options. After digging into them a bit, I found
-that most of them were using outdated major dependencies.
+When looking for a starter kit in the past, I came across _a lot_ of options. After digging into them a bit, I found that most of them were using outdated major dependencies.
 
-By checking before I started I avoided some headache down the road. If I had went with an outdated template,
-I would have to rely on old documentation, I'd likely miss out on useful functionality, and ultimately I'd have to
-update dependencies myself.
+By checking before I started I avoided some headache down the road. If I had went with an outdated template, I would have to rely on old documentation, I'd likely miss out on useful functionality, and ultimately I'd have to update dependencies myself.
 
-Realistically, I'm going to update dependencies anyways; but jumping to newer minor or patch versions will have fewer
-breaking changes than having to upgrade major versions).
+Realistically, I'm going to update dependencies anyways; but jumping to newer minor or patch versions will have fewer breaking changes than having to upgrade major versions).
 
 #### Good Tooling
 
-By "tooling", I am essentially referring to specific dev dependencies. You'll likely want things like formatting,
-linting, and testing systems in place eventually. so you may as well get a starter kit that already has them integrated
-for you. Each of these will have its own options to choose from (like formatting rules), so picking a starting kit
-that has these out-of-the-box will mean they will work with each other (for example: eslint, Prettier, and TypeScript
-configurations working seamlessly together).
+By "tooling", I am essentially referring to specific dev dependencies. You'll likely want things like formatting, linting, and testing systems in place eventually. so you may as well get a starter kit that already has them integrated for you. Each of these will have its own options to choose from (like formatting rules), so picking a starting kit that has these out-of-the-box will mean they will work with each other (for example: eslint, Prettier, and TypeScript configurations working seamlessly together).
 
 #### Officially Supported
 
-With the above points in mind, look at official starter kits first. They are going to be more general, and not
-something that was created for a specific use case in the past. They'll also be more up-to-date, and in some cases
-have a built-in way to update itself.
+With the above points in mind, look at official starter kits first. They are going to be more general, and not something that was created for a specific use case in the past. They'll also be more up-to-date, and in some cases have a built-in way to update itself.
 
 ### Conclusion
 
-With these points in mind, I picked
-[with-typescript-eslint-jest](https://github.com/vercel/next.js/tree/canary/examples/with-typescript-eslint-jest)
-for Next.JS.
+With these points in mind, I picked [with-typescript-eslint-jest](https://github.com/vercel/next.js/tree/canary/examples/with-typescript-eslint-jest) for Next.JS.
 
-This was one of the options using the installer (`create next-app`), and although some dependencies were a bit outdated,
-it looked like a good base. ESLint, Prettier, Jest and react-testing-library were all included, and there were a few
-bare-bone files (including tests!) that I start with.
+This was one of the options using the installer (`create next-app`), and although some dependencies were a bit outdated, it looked like a good base. ESLint, Prettier, Jest and react-testing-library were all included, and there were a few bare-bone files (including tests!) that I start with.
 
 My next post will go into what I did next.
