@@ -21,7 +21,9 @@ With that, let's (yarn?) start!
 
 There's value in building an application from scratch, particularly for gaining valuable learning experience as you go, and to be able to specify exactly what you want, and nothing else.
 
-However, a starter kit does a lot of heavy lifting for you out of the box and is usually a way to hit the ground running. When my team first picked up React, we went with a starter kit which abstracted a lot of the complexity away from us, and we were able to focus on building the application and not worry (as much) about tooling.
+You can also choose to use a starter kit: a minimal application with pre-defined dependencies and some dummy content in place.
+
+A starter kit does a lot of heavy lifting for you out of the box and is usually a way to hit the ground running. When my team first picked up React, we went with a starter kit ([Create React App](https://github.com/facebook/create-react-app)) which abstracted a lot of the complexity away from us, and we were able to focus on building the application and not worry (as much) about tooling.
 
 ## How to choose a starter kit
 
@@ -31,30 +33,51 @@ Luckily, it's not too hard to try a few different options before settling on one
 
 ### What to look for
 
-- Up to date dependencies
-- Good tooling
-- Preferably, officially supported
+- Minimal
+- Good Tooling
+- Officially Supported
 
-#### Up to Date Dependencies
+### Minimal
 
-When looking for a starter kit in the past, I came across _a lot_ of options. After digging into them a bit, I found that most of them were using outdated major dependencies.
+When looking for a starter kit in the past, I came across _a lot_ of options. After digging into them a bit, there was a lot of things I either didn't need, or didn't know if I needed. Having unnecessary dependencies can bias you into using them and may not align with you or your team's preference. By the time, and if, a need for such a dependency arises, there might be (in the JavaScript ecosystem's case, likely will be) something better.
 
-By checking before I started I avoided some headache down the road. If I had gone with an outdated template, I would have had to rely on old documentation, I'd likely miss out on useful functionality, and ultimately I'd have to update dependencies myself.
+You'll also probably notice some outdated packages that you'll want to update sooner than later, and having fewer packages to update will make it easier to update them.
 
-Realistically, I'm going to update dependencies anyways; but jumping to newer minor or patch versions will have fewer breaking changes than having to upgrade major versions).
+For example, updating a library such as Redux (and its peer dependencies, and their TypeScript definitions) might introduce breaking changes into the boilerplate content which you'll be re-writing anyways. By the time you want to introduce state management, there will likely be a newer version, or a more suitable alternative.
 
 #### Good Tooling
 
-By "tooling", I am essentially referring to specific dev dependencies. You'll likely want things like formatting, linting, and testing systems in place eventually, so you may as well get a starter kit that already has them integrated for you. Each of these will have its own options to choose from (like formatting rules), so picking a starting kit that has these out-of-the-box will mean they will work with each other (for example: eslint, Prettier, and TypeScript configurations working seamlessly together).
+By "tooling", I am essentially referring to specific dev dependencies. You'll likely want things like formatting, linting, and testing systems in place eventually, so you may as well get a starter kit that already has them integrated for you. Each of these will have its own options to choose from (like formatting rules), so picking a starting kit that has these out-of-the-box will mean they will work with each other (for example: [ESLint](https://eslint.org/), [Prettier](https://prettier.io/), and TypeScript configurations working seamlessly together).
 
 #### Officially Supported
 
-With the above points in mind, look at official starter kits first. They are going to be more general, and not something that was created for a specific use case in the past. They'll also be more up-to-date, and in some cases have a built-in way to update itself.
+Official starter kits, like those found on a framework's or library's website, are going to be more general-purpose, and not something that was created for a specific use case in the past and no longer maintained. They'll also be more up-to-date, and in some cases have a built-in mechanism to update itself. Official kits typically have the same licenses as their library or framework which may be important if a license is something you need to consider.
+
+Next.JS has a set of [many examples](https://github.com/vercel/next.js/tree/master/examples) that, while not the most user-friendly, is easy to navigate and covers most needs. These examples are also used to populate the options when you run the `create next-app` script, so once you pick one, installing it is a snap.
+
+Gatsby has [hundreds of starter kits](https://www.gatsbyjs.org/starters/?v=2) available with easy like previews. However, only three of them are maintained by the Gatsby team themselves. The list can be filtered by Gatsby Version, dependencies, and categories ("Official", "Blog").
+
+While the only official starter kit from the React team, [Create React App](https://github.com/facebook/create-react-app) is likely the most mature stater kit in the React ecosystem, easy to keep up to date, and sufficiently configurable while abstracting a lot of the complexity away.
 
 ### Conclusion
 
-With these points in mind, I picked [with-typescript-eslint-jest](https://github.com/vercel/next.js/tree/canary/examples/with-typescript-eslint-jest) for Next.JS.
+With these factors in mind, I started looking through the Next.JS examples repo. I knew I wanted to use TypeScript, so that narrowed my choices down to a manageable handful.
 
-This was one of the options using the installer (`create next-app`), and although some dependencies were a bit outdated, it looked like a good base. ESLint, Prettier, Jest and react-testing-library were all included, and there were a few bare-bone files (including tests!) that I could start with.
+With these points in mind, I picked [with-typescript-eslint-jest](https://github.com/vercel/next.js/tree/canary/examples/with-typescript-eslint-jest) for Next.JS. Taking away aspects that I don't need (or at least don't think I need yet), slimmed the list down to four:
 
-My next post will go into what I did next.
+- [`blog-starter-typescript`](https://github.com/vercel/next.js/blob/v9.4.4/examples/blog-starter-typescript/package.json)
+- [`with-typescript`](https://github.com/vercel/next.js/blob/v9.4.4/examples/with-typescript/package.json)
+- [`with-typescript-styled-components`](https://github.com/vercel/next.js/blob/v9.4.4/examples/with-typescript-styled-components/package.json)
+- [`with-typescript-eslint-jest`](https://github.com/vercel/next.js/blob/v9.4.4/examples/with-typescript-eslint-jest/package.json)
+
+Looking into each `package.json` file (linked above), I knew that TypeScript will add some extra dependencies for type definitions, but overall they were all manageable.
+
+I knew I wanted a CSS-in-JS library, but wasn't sure if I wanted to use [`styled-components`](https://styled-components.com/), so I eliminated `with-typescript-styled-components` from my list first.
+
+`blog-starter-typescript` had some useful blog- and markdown-specific libraries (`remark`, `gray-matter`), though I wasn't sure if I would be using them. It was also _almost_ on the latest version of TypeScript (although it's in the `dependencies` section rather than `devDependencies`). It also included some other libraries I knew I would be removing (`tailwindcss`). Writing this post and looking into this example more, I found some other questionable decisions such as the inclusion of `@types/jest` but not `jest` itself and the inclusion of `remark-html` which has the following disclaimer on [its README](https://github.com/remarkjs/remark-html) "it’s probably smarter to use `remark-rehype` directly". These are minor points, but all reduce my confidence in picking it.
+
+`with-typescript-eslint-jest` had by far the largest list of dependencies, but it was everything I would have included anyways, and nothing I wouldn't have. The nature of `jest` and `eslint` typically require additional `@types` in the `devDependencies` section, but this example had the same list of `dependencies` as `with-typescript` itself. Aside from the given ESLint and Jest, the example came with Prettier, lint-staged and husky to automatically format the files when you commit your changes. As a bonus, `jest-watch-typeahead`, which lets you filter your tests as you're running them, is probably something I would not have installed but eventually wished I had. All dependencies were relatively up to date, and having ESLint and Jest included would save me some installation and configuration steps I would have to do with the bare TypeScript example, so I settled on `with-typescript-eslint-jest`.
+
+While a complete checklist is not possible, I hope this provides some guidance for your next application. Whether it's a side project to get your career off the ground, an internal tool or your team's next project, carefully considering and vetting your options pays off in the future!
+
+My next post will go into what I did next: from updating configurations to laying down foundation for easier maintenance in the future.
