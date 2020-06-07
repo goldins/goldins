@@ -1,0 +1,111 @@
+---
+date: 2020/06/06
+title: Configuring a Starter Kit
+---
+
+// import UpdatingDepsWebStorm from './2020-06-06-configuring-starter-kit/updating-deps-webstorm.png';
+
+# Configuring your React Starter Kit
+
+_Previously, I outlined things to consider when picking a starter kit. This post goes into what I do after making a selection._
+
+## Introduction
+
+Now that I picked a starter kit (in this case, NextJS's [`with-typescript-eslint-jest`](https://github.com/vercel/next.js/blob/v9.4.4/examples/with-typescript-eslint-jest)), as much as I want to start actually _building_ something, I want to lay some foundation first. Of course, I'll build it first to make sure it works! In my case, `yarn && yarn dev` is enough to make sure it's working as expected. Other frameworks and libraries may have other commands, and `npm` may be used in place of `yarn`.
+
+Once I know it's working, I'll do a few things to modernize the project and enforce consistency and code safety in the future:
+
+- Update dependencies
+- Configure ESLint, Prettier, and TypeScript
+- Rebuild and run tests
+- Commit and push
+- Set up the IDE
+
+Taking these steps will introduce consistency and safety which will help avoid bugs and friction in the future.
+
+Please read on for details on each of these steps!
+
+## Update dependencies
+
+Once I knew it was working, I jumped back into the `package.json` file. This time in my IDE, rather than the repository linked above. As I noted in my previous post, a few dependencies were a bit out of date so I updated them to use the latest and greatest.
+
+`yarn upgrade` will update packages depending on how they are required in your `package.json`. Typically, a caret (`^`) is used to avoid breaking changes (i.e. major versions will not be updated) when updating dependencies (a `~` can be used to only pick up "patch" changes, usually bug fixes). Therefore, dependencies bundled with your application may be minor or patch versions ahead of what your `package.json` file says.
+
+Since this is a fresh project, I want to pick up major changes too, since breaking changes are unlikely to affect anything or will be easy to resolve. My preferred IDE, [WebStorm](https://www.jetbrains.com/webstorm/) has a hotkey (ctrl + space) to find and include latest dependencies:
+
+![Updating Dependencies in WebStorm](./2020-06-06-configuring-starter-kit/updating-deps-webstorm.png)
+
+The [WebStorm documentation](https://www.jetbrains.com/help/webstorm/installing-and-removing-external-software-using-node-package-manager.html#ws_npm_update_dependencies_from_package_json) has an explanation:
+
+> Code completion for previous package versions. When you press ⌃Space or start typing a version different from the latest one, WebStorm displays a suggestion list with all the previous versions of the package.
+
+Visual Studio Code has a plugin, [Version Lens](https://marketplace.visualstudio.com/items?itemName=pflannery.vscode-versionlens), that displays the latest version and lets you update your `package.json` with a click:
+
+![Updating Dependencies in VS Code](./2020-06-06-configuring-starter-kit/updating-deps-vscode.png)
+
+In my case, most packages already used the most recent major versions so it wasn't likely that these updates caused any problems. I ran `yarn dev` to quickly make sure.
+
+## Configurations
+
+I purposefully picked a starter kit that has some extra `devDependencies` included, such as Prettier, Jest, and ESLint, but they might not align with my preferences or needs. Before I decide on architecture or start writing new code, I want to configure these settings. Now that I have the most recent versions of my dependencies, I might also be able to leverage some new features that weren't available before.
+
+### [ESLint](https://eslint.org/)
+
+In the `.eslintrc.json`, I replaced `0`s with `"off"`s and `2`s with `"error"`s because I like the explicitness. The `"extends"` array, which uses preset recommendations, sets a good baseline, and customizations are up to personal preference. I make a few customizations to make linting a little stricter, like setting `@typescript-eslint/no-explicit-any` to `"warn"`. Other rules I leave off because TypeScript and Prettier remove the need for them (such as `react/prop-types` and `@typescript-eslint/indent`, respectively).
+
+The `"extends"` list has a note about Prettier:
+
+```
+// Uncomment the following lines to enable eslint-config-prettier
+// Is not enabled right now to avoid issues with the Next.js repo
+"prettier",
+"prettier/@typescript-eslint"
+```
+
+This is straightforward enough, so I do that, and then move on to the `.prettierrc` configuration.
+
+### [Prettier](https://prettier.io/)
+
+Prettier is an opinionated code formatter [to stop all the on-going debates over styles.](https://prettier.io/docs/en/option-philosophy.html). The [`.prettierrc`](https://prettier.io/docs/en/configuration.html) file allows you to define a few options such as spaces or tabs (a hottly debated topic!) and whether or not to omit semicolons, or trailing commas.
+
+I'm not going to go into details about what rules I set; the specific rules aren't as important as having the code style consistency that Prettier provides.
+
+I ran this starter kit's `format` script to reformat my files with my new settings.
+
+### [TypeScript](https://www.typescriptlang.org/)
+
+TypeScript, an extension of JavaScript that adds type safety, has an optional configuration file, `tsconfig.json`. The file included in `with-typescript-eslint-jest` has some preset options. I set `"strict"` to `true` to turn on "strict mode" which will add some additional safety to my codebase. `strict` is a combination of other TypeScript options: `noImplicitAny`, `noImplicitThis`, `alwaysStrict`, `strictBindCallApply`, `strictNullChecks`, `strictFunctionTypes` and `strictPropertyInitialization`. Setting the `strict` option will tell TypeScript to be more strict around `null` and `undefined` (`strictNullChecks`) and will prevent code from remaining un-typed (`noImplicitAny`), among other things.
+
+### Other Configurations
+
+There are other configurations that you might want to create or update, such as `jest.config.js` (for unit tests) or `next.config.js` (for Next.JS), but since those are related to your specific application, that's not necessary this early on. Another benefit of starting with a starter kit is that they will be set up properly.
+
+## Rebuild and Run Tests
+
+Once my dependencies are up to date and configurations are done, I ran `yarn dev` to make sure there were not regressions. I also ran `yarn test` for good measure, and discovered that a test failed because a snapshot was not updated, so I had a great opportunity to fix it by opening a [pull request](https://github.com/vercel/next.js/pull/13847/files)!
+
+## Commit and push
+
+If using `git`, running the `commit` and `push` commands at this point will bring up potential issues with version control such as permissions and making sure the repository actually exists and some quality checks may also run, facilitated by [git hooks](https://git-scm.com/docs/githooks)). Running these `git` commands will also show whether or not they are set up and working properly.
+
+Auto-formatting and linting scripts are often set up as a pre-commit scripts. Both of these actions are usually quick since they can run on individual files and are not concerned with the rest of the code.
+
+TypeScript compilation typically takes longer, and depending on your workflow can be frustrating to run as a "pre-commit" check. As a "pre-push" check, it will make sure that other people working on the same code aren't picking up code that doesn't compile!
+
+`pre-commit` and `pre-push` quality gates (as well as [others](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)) can be customized to your, or the team's, needs.
+
+In my case, `with-typescript-eslint-jest` was already set up with Prettier and ESLint to format and lint changed files as a `pre-commit` hook, and TypeScript compilation was included as a `pre-push` hook.
+
+## IDE Setup
+
+Now that my application has the configurations I want and I know they work, I'll set up my IDE to hook into them. With WebStorm, a lot of these settings are done in the Preferences panel. Searching for Prettier, for example, allows you to automatically pick up the `.prettierrc` settings (I also like to enable "Run on save"). There are similar options for ESLint and TypeScript, which may be configured automatically.
+
+Visual Studio Code's extensive extension collection covers these features as well: [Prettier - Code Formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) and [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) plugins can be installed and configured as needed and have their own extensive documentation and examples.
+
+# Summary
+
+I haven't really built anything quite yet but I know that when I do, future errors will be caught sooner than later since now I have a few places where errors are surfaced: my IDE, before code is committed, and before code is pushed (and likely shared). These automated tools won't find _all_ errors, but the ones they do find are the most common, easiest to fix, and can be underlying errors that cause real bugs.
+
+Setting up Prettier will help me focus on what I'm building. On a team, introducing automated formatting in the workflow will reduce the time code changes spend in code reviews, and will keep the code consistent.
+
+Doing this now, before I've actually written any code, will save me headaches in the future.

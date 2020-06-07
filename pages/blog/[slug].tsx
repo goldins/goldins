@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic';
 import { getMdSlugs } from './getPosts';
 
 // reference: https://nextjs.org/learn/basics/dynamic-routes/implement-getstaticpaths
+// @ts-ignore
 export default ({ filename }) => {
   const MDXContent = dynamic(() => import(`./content/${filename}`));
   console.log(MDXContent);
@@ -13,6 +14,7 @@ export default ({ filename }) => {
   );
 };
 
+// @ts-ignore
 export async function getStaticProps({ params }) {
   const filename = `${params.slug}.mdx`;
 
