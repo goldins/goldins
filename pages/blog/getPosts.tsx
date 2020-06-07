@@ -5,5 +5,5 @@ const POSTS_DIR = 'content';
 export const postsDirectory = `${process.cwd()}/pages/blog/${POSTS_DIR}`;
 
 export function getMdSlugs() {
-  return fs.readdirSync(postsDirectory);
+  return fs.readdirSync(postsDirectory).filter((fileName) => fileName.endsWith('.mdx'));
 }

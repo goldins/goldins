@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
-import { zip } from 'lodash';
-import { parse, format } from 'date-fns';
 
 import { SiteHead } from '../../components/SiteHead';
 import { getMdSlugs } from './getPosts';
@@ -12,10 +10,6 @@ interface Props {
 }
 
 export default ({ fileNames }: Props) => {
-  const metas = fileNames.map((slug) => require(`./content/${slug}`).metadata);
-
-  const d = zip(metas, fileNames);
-
   return (
     <>
       <SiteHead subTitle="Blog" />
@@ -27,14 +21,14 @@ export default ({ fileNames }: Props) => {
       <h2>Blog</h2>
       <br />
       <br />
-      {d.map(([meta, path], index) => (
+      {fileNames.map((path, index) => (
         <React.Fragment key={index}>
           <br />
-          <span>{format(parse(meta.date, 'yyyy/mm/dd', new Date()), 'MMMM Do, yyyy')}</span>
+          {/*<span>{format(parse(meta.date, 'yyyy/mm/dd', new Date()), 'MMMM Do, yyyy')}</span>*/}
           <br />
 
           <Link href={'blog/[slug]'} as={`blog/${path.split('.mdx')[0]}`}>
-            <a>{meta.title}</a>
+            {/* <a>{meta.title}</a> */}
           </Link>
         </React.Fragment>
       ))}

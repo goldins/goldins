@@ -4,13 +4,11 @@ import { getMdSlugs } from './getPosts';
 // reference: https://nextjs.org/learn/basics/dynamic-routes/implement-getstaticpaths
 export default ({ filename }) => {
   const MDXContent = dynamic(() => import(`./content/${filename}`));
-  const postMeta = require(`./content/${filename}`).metadata;
+  console.log(MDXContent);
   return (
     <div>
       <h1>Blog</h1>
       <MDXContent />
-      <h2>Blog Title: {postMeta.title}</h2>
-      <h2>Date: {postMeta.date}</h2>
     </div>
   );
 };

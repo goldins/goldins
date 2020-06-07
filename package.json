@@ -1,6 +1,6 @@
 {
   "name": "with-typescript-eslint-jest",
-  "author": "@erikdstock",
+  "author": "@goldins",
   "license": "MIT",
   "version": "1.0.0",
   "scripts": {
@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@emotion/core": "10.0.28",
-    "@emotion/styled": "10.0.27",
+    "@emotion/styled": "^10.0.27",
     "@mdx-js/loader": "^1.6.5",
     "@next/mdx": "^9.4.4",
     "date-fns": "^2.14.0",
@@ -43,7 +43,9 @@
     "polished": "^3.6.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "remark-frontmatter": "^2.0.0"
+    "remark-emoji": "^2.1.0",
+    "remark-frontmatter": "^2.0.0",
+    "remark-images": "^2.0.0"
   },
   "devDependencies": {
     "@testing-library/react": "^10.0.4",
